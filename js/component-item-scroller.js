@@ -1,9 +1,9 @@
 // namespace
-window.GUMTREE = window.GUMTREE || {};
+window.NS = window.NS || {};
 
 (function($, document, window){
 	'use strict';
-	var namespace = window.GUMTREE || window,
+	var namespace = window.NS || window,
 		componentSelector = 'data-item-scroller',
 		pluginName = 'itemScroller',
 		verion = "1.0.0",

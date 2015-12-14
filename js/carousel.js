@@ -8,7 +8,7 @@
 */
 (function($, document, window){
 	'use strict';
-	var namespace = window.GUMTREE || window,
+	var namespace = window.NS || window,
 		componentSelector = 'data-carousel',
 		pluginName = 'carousel',
 		verion = '1.0.0',
