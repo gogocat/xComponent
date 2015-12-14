@@ -30,13 +30,18 @@
 			// create web worker
 			_this.worker = new Worker('js/worker.js'); // path is relative to index.html
 			
+			// cache this element jquery object
+			_this.$el = $(this);
+			
 			$.when( $.get( _this.config.templatePath ), $.get( _this.config.data ) ).done(function( tmplXhr, dataXhr ) {
-				_this.tpl = tmplXhr[0]; //$(tmplXhr[0]).filter('template').html();
+				_this.tpl = tmplXhr[0]; // this is string including template tag itself
 				_this.tmplData = self.augmentData(dataXhr[0]);
 				if (_this.tmplData) {
 					self.bindTemplate(_this.tmplData);
 				}
 			});
+			
+			
 		}
 	  },
 	  methods: {
@@ -48,7 +53,7 @@
 			if (data && data.content){
 				data.prevLinkText = '';
 				data.nextLinkText = '';
-				data.thumbnailImg = '';
+				data.thumbnailImg = data.content[0].thumbnail;
 				return data;
 			}		
 		},
@@ -70,11 +75,22 @@
 			_this.worker.postMessage([_this.tpl, tmplData]);
 			_this.worker.onmessage = function(e) {
 				console.timeEnd('workerProcess');
-				// use content inside 'template' tag
+				// revive string content inside the 'template' tag to html
 				self.innerHTML = $(e.data).filter('template').html();
 				console.log('Message received from worker');
+				
+				self.bindSlider();
 			};
 
+		},
+		// TODO: make slider logic as another self contain web component
+		bindSlider: function() {
+			var self = this,
+				_this = this.xtag;
+				
+			if ($.fn.carousel){
+				_this.$el.find('.collapse-pane-body').carousel();
+			}
 		},
 		update: function() {
 
