@@ -1,0 +1,27 @@
+
+
+<template>
+	<div class="clearfix carousel-body">
+		<% 
+			var i=0, contentLength = content.length;
+			for ( i = 0; i < contentLength; i+=1 ) {
+		%>
+		<div class="slide clearfix">
+			<div class="col-md-3">
+				<img class="response-img" src="images/products/<%=thumbnailImg%>" alt="<%=thumbnailImg%>">
+			</div>
+			<div class="col-md-9">
+				<%=content[i].description%>
+			</div>
+		</div>
+		<% } %>
+	</div>
+	<div class="clearfix collapse-pane-footer">
+		<div class="col-xs-6 col-sm-6 col-md-6">
+			<a href="#" data-item-scroll-left="" class="nav-arrow-left" title="previous"><%=prevLinkText%></a>
+		</div>
+		<div class="col-xs-6 col-sm-6 col-md-6">
+			<a href="#" data-item-scroll-right="" class="nav-arrow-right" title="next"><%=nextLinkText%></a>
+		</div>
+	</div>
+</template>

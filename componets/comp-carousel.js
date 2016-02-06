@@ -15,7 +15,7 @@
 }(window, function () {
 	'use strict';
 
-	xtag.register('comp-slider', {
+	xtag.register('comp-carousel', {
 	  lifecycle: {
 		created: function(){
 			var self = this,
@@ -35,12 +35,25 @@
 			
 			$.when( $.get( _this.config.templatePath ), $.get( _this.config.data ) ).done(function( tmplXhr, dataXhr ) {
 				_this.tpl = tmplXhr[0]; // this is string including template tag itself
-				_this.tmplData = dataXhr[0];
-				self.bindTemplate(_this.tmplData);
+				_this.tmplData = self.extendData(dataXhr[0]);
+				if (_this.tmplData) {
+					self.bindTemplate(_this.tmplData);
+				}
 			});	
 		}
 	  },
 	  methods: {
+		extendData: function(data) {
+			var self = this,
+				_this = this.xtag;
+
+			if (data && data.content){
+				data.prevLinkText = '';
+				data.nextLinkText = '';
+				data.thumbnailImg = data.content[0].thumbnail;
+				return data;
+			}		
+		},
 		bindTemplate: function(tmplData){
 			var self = this,
 				_this = this.xtag;
@@ -62,10 +75,6 @@
 				console.log('worker: compiled template ');
 				// revive string content inside the 'template' tag to html
 				self.innerHTML = $(e.data).filter('template').html();
-				
-				// test dom search in web worker.
-				var bodyHtml = $('body').html();
-				_this.worker.postMessage({cmd: 'createVdom', html: bodyHtml });
 				
 				// TODO: make slider / carousel as web component and self execute binding on creation
 				self.bindSlider();

@@ -131,7 +131,7 @@ a:hover {
 	padding:1.5em;
 }
 
-.collapse-pane-body {
+.carousel-body {
 	padding:0;
 }
 
@@ -170,19 +170,19 @@ a:hover {
 	background-position: 0px -16px;
 }
 
-.collapse-pane-body {
+.carousel-body {
 	background-color:#fff;
 	position:relative;
 	overflow:hidden;
 }
-.collapse-pane-body .slide {
+.carousel-body .slide {
 	outline: 0;
 	background-color:#fff;
 	padding-top: 1em;
     padding-bottom: 1em;
 	min-height:212px; /* with ipad image loaded */
 }
-.collapse-pane-body  .response-img {
+.carousel-body  .response-img {
 	display:inline-block;
 	width:100%;
 	max-width:700px;
