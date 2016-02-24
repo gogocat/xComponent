@@ -58,7 +58,7 @@
 			var self = this,
 				_this = this.xtag;
 				
-			console.log('bindTemplate with data: ', tmplData);
+			console.log('comp-carousel bindTemplate with data: ', tmplData);
 			/*
 			// no web worker
 			console.time('template-process');
@@ -66,13 +66,13 @@
 			self.innerHTML = $(result).filter('template').html();
 			console.timeEnd('template-process');
 			*/
-			console.time('workerProcess');
+			console.time('comp-carousel-workerProcess');
 			_this.worker.postMessage({cmd: 'compileTemplate', template: _this.tpl, data:tmplData });
 			
 			// on template compiled by web worker
 			_this.worker.addEventListener('message', function(e) {
-				console.timeEnd('workerProcess');
-				console.log('worker: compiled template ');
+				console.timeEnd('comp-carousel-workerProcess');
+				console.log('comp-carousel worker: compiled template ');
 				// revive string content inside the 'template' tag to html
 				self.innerHTML = $(e.data).filter('template').html();
 				
