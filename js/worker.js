@@ -1,5 +1,6 @@
-importScripts('simple-dom.js?1231'); // virtual DOM
+importScripts('simple-dom.js'); // virtual DOM
 importScripts('vendor/zepto.js'); // simple jQuery equivalent 
+importScripts('vendor/knockout-3.4.0.debug.js'); // ko debug version
 importScripts('vendor/microTemplate.js');
 
 var $vDom = null;

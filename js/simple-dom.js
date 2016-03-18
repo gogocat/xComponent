@@ -241,6 +241,10 @@ var window = self.window = self;
             }
         }
     };
+	
+	Element.prototype.getElementsByTagName = function() {
+		return [];
+	};
 
     function DocumentFragment() {
         this.nodeConstructor(11, '#document-fragment', null);

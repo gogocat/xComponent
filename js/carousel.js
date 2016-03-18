@@ -144,12 +144,12 @@
 				if (self.isBusy){
 					return;
 				}
-				self.isBusy = true;
 				// check if ended
 				if (self.currentSlideIndex < self.totalSlides  - 1) {
+					self.isBusy = true;
 					self.currentSlideIndex += 1;
 					self.slideToIndex(self.currentSlideIndex, 'right');
-				}
+				} 
 			},
 			
 			// slide to left - calls slideToIndex method
@@ -159,12 +159,12 @@
 				if (self.isBusy){
 					return;
 				}
-				self.isBusy = true;
 				// check if ended
 				if (self.currentSlideIndex > 0 ) {
+					self.isBusy = true;
 					self.currentSlideIndex -= 1;
 					self.slideToIndex(self.currentSlideIndex, 'left');
-				}
+				} 
 			},
 			
 			//	prepare slide animation

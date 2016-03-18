@@ -48,8 +48,8 @@
 				_this = this.xtag;
 
 			if (data && data.content){
-				data.prevLinkText = '';
-				data.nextLinkText = '';
+				data.prevLinkText = 'Back';
+				data.nextLinkText = 'Next';
 				data.thumbnailImg = data.content[0].thumbnail;
 				return data;
 			}		
