@@ -1,7 +1,8 @@
 importScripts('simple-dom.js'); // virtual DOM
 importScripts('vendor/zepto.js'); // simple jQuery equivalent 
 importScripts('vendor/knockout-3.4.0.debug.js'); // ko debug version
-importScripts('vendor/microTemplate.js');
+importScripts('vendor/ko-underscore-tmpl.js');
+importScripts('vendor/underscore.js');
 
 var $vDom = null;
 // test
@@ -11,12 +12,13 @@ console.log('worker: document?', typeof document !== 'undefined');
 function compileTemplate(eData) {
 	var compiledTemplate = '';
 	if (eData.template && eData.data){
-		compiledTemplate = tmpl(eData.template, eData.data);
+		compiledTemplate = _.template(eData.template)(eData.data);
+		// compiledTemplate = ko.renderTemplate(eData.template, eData.data);
 	}
 	postMessage(compiledTemplate);
-	//return compiledTemplate;
 }
 
+// doesn't work inside worker.
 function createVdom(htmlString) {
 	if (typeof htmlString === 'string'){
 		$vDom = $('<div/>');
@@ -28,12 +30,13 @@ function createVdom(htmlString) {
 	searchVdom('h5');
 }
 
+// doesn't work inside worker.
 function searchVdom(selector) {
 	var $el = '';
-	if ($vDom && typeof htmlString === 'string'){
+	if ($vDom && typeof selector === 'string'){
 		$el = $vDom.find(selector);
 	}
-	//return postMessage($el);
+	return postMessage($el);
 }
 
 function processMessage(e) {

@@ -59,13 +59,20 @@
 				_this = this.xtag;
 				
 			console.log('comp-carousel bindTemplate with data: ', tmplData);
-			/*
-			// no web worker
+			
+			
+			// render template no webworker
 			console.time('template-process');
-			var result = tmpl(_this.tpl, tmplData);
+			//self.innerHTML = _this.tpl;
+			//var result = ko.renderTemplate('tmpl-carousel', tmplData, null, self ); //tmpl(_this.tpl, tmplData);
+			//console.log(result);
+			var result = _.template(_this.tpl)(tmplData);
 			self.innerHTML = $(result).filter('template').html();
 			console.timeEnd('template-process');
-			*/
+			
+			
+			
+			// render template using webworker
 			console.time('comp-carousel-workerProcess');
 			_this.worker.postMessage({cmd: 'compileTemplate', template: _this.tpl, data:tmplData });
 			
@@ -79,6 +86,10 @@
 				// TODO: make slider / carousel as web component and self execute binding on creation
 				self.bindSlider();
 			}, false);
+			
+			// test vdom - // doesn't work
+			//_this.worker.postMessage({cmd: 'createVdom', html: self.innerHTML});
+			
 
 		},
 		// TODO: make slider logic as another self contain web component

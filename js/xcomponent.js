@@ -22,7 +22,7 @@
 	}
 	
 	xComponent.prototype = {
-		
+		// TODO: move ajax load to webworker
 		loadTemplateAndViewModel: function() {
 			var self = this;
 				

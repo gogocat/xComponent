@@ -22,25 +22,35 @@
         <![endif]-->
 
         <div id="test" class="section section-main">
-			
+			<!--
 			<comp-slider config="{templatePath: 'componets/import-slider.html', data: 'content.json'}">
 			</comp-slider>
-			
+			-->
 			
 			<comp-carousel config="{templatePath: 'componets/import-carousel.html', data: 'content.json'}">
 			</comp-carousel>
+			
 	
 		</div>
 
-		<script src="js/vendor/jquery-2.2.0.min.js"></script>
+		<script src="js/vendor/jquery-3.1.0.js"></script>
+		<!-- test KO with undersore template -->
+		<script src="js/vendor/knockout-3.4.0.debug.js"></script>
+		<script src="js/vendor/underscore.js"></script>
+		<script src="js/vendor/ko-underscore-tmpl.js"></script>
+		
 		<script src="js/vendor/x-tag-core.min.js"></script>
 		
 		<!-- Importing Custom Elemenent - html import and document.currentScript.ownerDocument only works in Chrome...
 		<link rel="import" href="componets/import-slider.html">
 		-->
+		<!--
 		<script src="componets/comp-slider.js"></script>
+		-->
 		<script src="componets/comp-carousel.js"></script>
 		<script src="js/carousel.js"></script>
+		
+		
 
     </body>
 </html>
